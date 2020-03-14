@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1.导入vue的包 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <!-- new 的 Vue 实例会控制这个元素中的所有内容 -->
+    <!-- V 层 -->
+    <div id="app">
+        <p>{{ msg }}</p>
+    </div>
+
+    <script>
+    // 2.创建一个vue实例
+    // 当我们导入包后，浏览器的内存中就多了一个 Vue 的构造函数
+    // vm 对象是 VM 调度者
+    var vm = new Vue({
+        el: '#app',  // el 表示这个vm控制那个区域
+        // 这里的 data 是 MVVM 中的 M，保存页面数据
+        data: {  // data 中存放 el 中要使用到的数据
+            msg: '欢迎学习Vue'  // data 中的所有属性在 el 中能之间使用
+        }
+    })
+    </script>
+</body>
+
+</html>

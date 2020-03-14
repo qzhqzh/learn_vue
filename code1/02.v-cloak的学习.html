@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-cloak 可以解决插值闪烁问题 -->
+        <p v-cloak> {{msg}} </p>
+        <p v-text="msg"></p>
+        <!-- 默认 v-text 没有闪烁问题。但是没法再前后加其他字符 -->
+        <!-- v-text 会清空中间的占位符 -->
+
+        <div>{{msg2}}</div>
+        <div v-text="msg2"></div>
+        <div v-html="msg2"></div>
+
+        <div>
+            <!-- <input type="button" value="按钮" v-bind:title="mytitle"> -->
+            <input type="button" v-bind:value="myvalue + 'haha'" :title="mytitle + 123">
+            <!-- v-bind可以绑定元素的属性
+            v-bind可以缩写为 :
+            v-bind可以使用js表达式 -->
+        </div>
+
+
+        <div>
+            <!-- 弹框对话 -->
+            <!-- <input type="button" value="点击弹出hello" v-on:click="show"> -->
+            <input type="button" value="点击弹出hello" @click="show">
+            <!-- v-on绑定的是浏览器事件 -->
+            <!-- v-on 可以缩写为 @ -->
+        </div>
+
+
+    </div>
+
+    <script src="./lib/vue-2.4.0.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '123',
+                msg2: '<h1>哈哈，我是一个大大的H1，我大，我骄傲</h1>',
+                myvalue: '我是按钮',
+                mytitle: '我是一个title'
+            },
+            // methods用的是复数形式，不过后面用的是对象
+            // methods中定义了当前Vue实例可用的所有方法
+            methods:{
+                show:function(){
+                    alert('Hello Hello')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

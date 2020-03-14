@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <input type="text" v-model="first">
+        <select v-model="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="second">
+        <input type="button" value="=" @click="cal">
+        <input type="text" v-model="res">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                first: 0,
+                op: '-',
+                second: 0,
+                res: ''
+            },
+            methods: {
+                //    eval 这种方式有隐患，正式开发尽量少用
+                cal: function () {
+                    this.res = eval('parseFloat( this.first ) ' + this.op + 'parseFloat( this.second )')
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

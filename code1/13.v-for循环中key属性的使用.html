@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <label>ID</label>
+        <input type="text" v-model="id">
+
+        <label>Name</label>
+        <input type="text" v-model="name">
+
+        <input type="button" value="添加" @click="add">
+
+        <!-- 在 v-for 的时候，使用 :key 保证一致性 -->
+        <!-- key的值必须是 字符串或者数字类型 -->
+        <div v-for="user in list" :key="user.id">
+            <p><input type="checkbox">{{user.id}} -- {{user.name}}</p>
+        </div>
+    </div>
+    <script>
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               id: '',
+               name: '',
+               list: [
+                   { id: 1, name: '李斯'},
+                   { id: 2, name: '赢政'},
+                   { id: 3, name: '韩非子'}
+                ]
+           },
+           methods:{
+               add: function(){
+                   this.list.unshift({
+                    id: this.id,
+                    name: this.name
+                   })
+               }
+           }
+        });
+    </script>
+</body>
+
+</html>

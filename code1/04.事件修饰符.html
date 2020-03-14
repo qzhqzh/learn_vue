@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+
+    <style>
+        .inner {
+            height: 150px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- stop -->
+        <!-- 终止事件被冒泡出去 -->
+        <div class="inner" @click="divClick">
+            <input type="button" value="戳我stop" @click.stop="inputClick">
+        </div>
+
+        <!-- prevent -->
+        <!-- 阻止事件的默认行为，比如a的调整，submit的提交 -->
+        <a href="http://www.baidu.com" @click.prevent="aClick">有问题，去百度</a>
+
+        <!-- capture -->
+        <!-- 加入捕获机制 -->
+        <div class="inner" @click.capture="divClick">
+            <input type="button" value="戳我capture" @click="inputClick">
+        </div>
+    
+
+        <!-- self -->
+        <!-- 只管自己节点上的事件，被捕获或者冒泡的事件就不管了 -->
+        <div class="inner" @click.self="divClick">
+            <input type="button" value="戳我self" @click="inputClick">
+        </div>
+
+        <!-- once -->
+        <!-- 事件流可以串联，但是前后顺序可以改变 -->
+        <!-- 只执行一次，如下是阻止默认行为一次 -->
+        <a href="http://www.baidu.com" @click.prevent.once="aClick">有问题，去百度</a>
+    
+    </div>
+    <script>
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               msg:'123'
+           },
+           methods:{
+               divClick: function(){
+                   console.log('this is div click!')
+               },
+               inputClick: function(){
+                   console.log('this is button click!')
+               },
+               aClick: function(){
+                   console.log('我先去百度')
+               }
+           }
+        });
+    </script>
+</body>
+
+</html>
